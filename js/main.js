@@ -91,7 +91,7 @@ function fetchmixcloud(urldata) {
 
       //console.log(mixCount)
       $(document).find('#mixnumber').text(mixCount);
-      $(document).find('#minnumber').text(minCount - mixCount);
+      $(document).find('#minnumber').text(minCount - 20);
 
       convertduration()
       removeDuplicates()
@@ -103,7 +103,7 @@ function fetchmixcloud(urldata) {
 
 $(document).on('click', '#page-next, #page-back', function (e) {
   e.preventDefault()
-
+  $(this).hide(0)
   mixitupDestroy()
 
   urldata = $(this).attr('href')
@@ -111,16 +111,14 @@ $(document).on('click', '#page-next, #page-back', function (e) {
   if ($(this).is('#page-back')) {
     //console.log('this is back')
     mixCount = mixCount - 40
-    mixCount = mixCount - 20
+    minCount = minCount - 40
     //console.log(mixCount)
 
   } else {
     //console.log('this is next')
-
   }
+  $(this).show(0)
 })
-
-
 
 function convertToSlug(Text) {
   return Text
@@ -222,7 +220,7 @@ function mixitupInit() {
 }
 
 function mixitupDestroy() {
-  var mixer = mixitup(containerEl);
+  mixer = mixitup(containerEl);
   mixer.destroy()
 }
 
